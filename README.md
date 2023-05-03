@@ -8,3 +8,5 @@ The goal of this project is to draw maps that show the average number of 7-day i
 - For plotting maps, you just need to look at the code block called “**Create map**”. It uses the data file  ***gis_incidences_nona.pkl*** used here. But this file was produced by  ***average 7-days incidences.csv*** and ***sehr_hoch.geo.json***. For simplicity, I removed the part where I processed and created this data file, but if you need it, please let  me know.
 
 2.  ***Mobility_Levy-cleaned.ipynb*** is for studying and making models of the data in MiD17 and Nhts17.
+
+Note: the data file ***MiD2017_Wege.csv*** which used in the ***Mobility_Levy-cleaned.ipynb*** is too large to upload here.
