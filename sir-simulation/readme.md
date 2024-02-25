@@ -27,7 +27,7 @@ The parameters are described by:
 - $n$: number of points
 - $r$: radius
 - $a$: alpha
-- $include$ \_ $long$ \_ $range$: either 0 or 1 to specify whether long-range edge should be generated or not
+- $include$ \_ $long$ \_ $range$: either 0 or 1 to specify whether long-range edges should be generated or not
 - $threshold$: percentage of the total nodes that should be contained in the largest connected component (0.0, 1.0]
 
 ## Execute simulation
@@ -45,5 +45,5 @@ simulation round.
 ## Visualization
 
 The csv file in the visualization directory contains the output of various runs performed on a graph with $n=1,000,000$ nodes and
-a radius of $r=1.5$. Data of this file can be supplied to the Jupyter notebook to be plotted in 3-D and was used to generate the 
-figure in the Supplementary Information.
+a radius of $r=1.5$. The data of this file can be supplied to the Jupyter notebook to be plotted in 3-D. The resulting figure was
+included in the paper's Supplementary Information.
