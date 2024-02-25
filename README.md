@@ -60,6 +60,7 @@ The executing scripts are listed belows:
 
 * Download the scripts and dataset folder, open it in the Juypter notebook. Just executing each block is fine.
 * Note: Please note the file paths used in the script and change them to suit your situation.
+* Note: the folder **sir-simulation** contains scripts used to simulate the SIR model on a random geometric graph built upon points generated on a play field. Please find more details over there.
 
 ## Contact
 Gregor Bankhamer - gregor_stefan.bankhamer@stud.sbg.ac.at <br>
