@@ -44,6 +44,6 @@ simulation round.
 
 ## Visualization
 
-The csv file in the visualization directory contains the output of various runs performed on a graph with $n=1,000,000$ nodes and
-a radius of $r=1.5$. The data of this file can be supplied to the Jupyter notebook to be plotted in 3-D. The resulting figure was
+The csv file in the visualization directory contains the output of various runs performed on a graph with $n=1,000,000$ nodes, 
+a radius of $r=1.5$ and $k=20$. The data of this file can be supplied to the Jupyter notebook to be plotted in 3-D. The resulting figure was
 included in the paper's Supplementary Information.
