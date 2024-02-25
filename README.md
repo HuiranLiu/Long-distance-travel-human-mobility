@@ -1,6 +1,6 @@
 # Project Title
 
-The Nature of Long-Distance Travel and Implications for Disease Spread
+long-distance-travel-human-mobility
 
 ## Description
 
