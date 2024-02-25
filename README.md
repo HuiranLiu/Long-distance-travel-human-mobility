@@ -48,7 +48,7 @@ The executing scripts are listed belows:
    * These two docs are the 7-day incidence for Covid in Germany from 18.11.2020 to 31.10.2022. These were used in the script Levy-Covid19.ipynb.
   
 6. Data_flu.xlsx
-   *  This doc was required from RKI https://survstat.rki.de/Content/Query/Create.aspx. It is the incidence value of Influenza(saisonal) from xxx to xxx, split by Saisonwoche.
+   *  This doc was required from RKI https://survstat.rki.de/Content/Query/Create.aspx. It is the incidence value of Influenza(saisonal) divided by Saisonwoche. 
 
 7. sehr_hoch.geo.json
     * json file contains the information for seting up the German maps.
