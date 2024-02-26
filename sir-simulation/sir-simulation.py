@@ -1,4 +1,3 @@
-# usage: py covid19-sir-simulation.py graph_r1_5_a1_1_lr1_t0_9 1000000 1.1 0.6 0.3 1
 import os.path
 import sys
 import math
@@ -10,11 +9,8 @@ n = int(sys.argv[2])
 alpha = float(sys.argv[3])
 beta = float(sys.argv[4])
 gamma = float(sys.argv[5])
-write_to_output_file = 0
-if len(sys.argv) > 6:
-    write_to_output_file = int(sys.argv[6])
+number_of_simulations = int(sys.argv[6])
 
-MAX_ROUNDS = math.sqrt(n)
 
 SUSCEPTIBLE = 'S'
 INFECTIOUS = 'I'
@@ -56,7 +52,6 @@ def read_graph(file_path, infectious_nodes):
     return input_graph
 
 
-number_of_simulations = 30
 current_simulation = 1
 simulations = list()
 while current_simulation <= number_of_simulations:
@@ -108,13 +103,6 @@ while current_simulation <= number_of_simulations:
 
         round_counter += 1
 
-    # do not execute this code since we deactivated the maximum number of rounds
-    if False:  # round_counter >= 1000 and len(infectious_nodes) > 0:
-        print("reached maximum number of rounds")
-        print("infected nodes: " + str(len(infectious_nodes)))
-        print("recovered nodes: " + str(len(recovered_nodes)))
-        round_counter = math.inf
-
     print(graph_input_file + ";" + str(beta) + ";" + str(gamma) + ";" + str(round_counter))
     simulations.append(round_counter)
 
@@ -124,17 +112,4 @@ while current_simulation <= number_of_simulations:
     recovered_nodes = set() 
 
 median = statistics.median(simulations)
-print("median of " + str(number_of_simulations) + ": " + str(median))
-
-if write_to_output_file == 1:
-    output_filename = "covid19-sir-simulation-results-alpha-" + str(alpha)
-    if os.path.exists(output_filename) and os.path.getsize(output_filename) > 0:
-        # file already exists and there is already some result in it
-        with open(output_filename, 'a') as results_file:
-            results_file.write(str(alpha) + ";" + str(beta) + ";" + str(gamma) + ";" + str(median) + "\n")
-    else:
-        with open(output_filename, 'w') as results_file:
-            results_file.write("alpha;beta;gamma;r_median\n")
-            # write header line into file and append first result
-            results_file.write(str(alpha) + ";" + str(beta) + ";" + str(gamma) + ";" + str(median) + "\n")
-
+print("median of " + str(number_of_simulations) + " runs: " + str(median))

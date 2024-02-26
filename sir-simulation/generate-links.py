@@ -1,4 +1,3 @@
-# usage: py covid19-sir-simulation-generate-graph.py points 1000000 1.5 2.8 1 0.9
 import math
 from collections import deque
 import sys
@@ -9,7 +8,6 @@ n = int(sys.argv[2])
 r = float(sys.argv[3])
 a = float(sys.argv[4])
 include_long_range = int(sys.argv[5])
-threshold = float(sys.argv[6])
 
 sqrt_n = int(math.sqrt(n))
 
@@ -157,7 +155,6 @@ def build_graph(graph, r):
                 print("old pos_y: " + str(nodes[i][0][1]) + "; new pos_y " + str(e_y))
 
     print("building graph with radius " + str(r) + " done")
-    print("No long range edge drawn in " + str(no_long_range_counter) + " cases")
 
 
 def write_graph_to_file(graph, file_path):
@@ -174,46 +171,31 @@ def write_graph_to_file(graph, file_path):
 
 
 size_of_largest_component = 1
-while not is_threshold_reached(n, size_of_largest_component, threshold):
-    size_of_largest_component = 1
-    # build grid with current radius
-    grid = [[[] for _ in range(int(sqrt_n / r) + 1)] for _ in range(int(sqrt_n / r) + 1)]
+# build grid with current radius
+grid = [[[] for _ in range(int(sqrt_n / r) + 1)] for _ in range(int(sqrt_n / r) + 1)]
 
-    for i in range(0, n):
-        current_node = nodes[i]
+for i in range(0, n):
+    current_node = nodes[i]
 
-        grid_x = math.floor(current_node[0][0] / r)
-        grid_y = math.floor(current_node[0][1] / r)
-        grid[grid_y][grid_x].append(i)
+    grid_x = math.floor(current_node[0][0] / r)
+    grid_y = math.floor(current_node[0][1] / r)
+    grid[grid_y][grid_x].append(i)
 
-        # store point and metadata
-        nodes[i][1] = (grid_x, grid_y)
+    # store point and metadata
+    nodes[i][1] = (grid_x, grid_y)
 
-    # build graph according to grid
-    build_graph(graph, r)
+# build graph according to grid
+build_graph(graph, r)
 
-    # check graph with current radius
-    size_of_largest_component = largest_connected_component(graph)
-    print("radius " + str(r) + " generated largest connected component with " + str(size_of_largest_component)
-          + " nodes")
+# check graph with current radius
+size_of_largest_component = largest_connected_component(graph)
+print("Radius " + str(r) + " resulted in a connected component with " + str(size_of_largest_component) + " nodes")
 
-    if not is_threshold_reached(n, size_of_largest_component, threshold):
-        # init variables and increase radius
-        r += 0.01
-        grid = []
-        # init graph
-        graph = {}
-
-        for i in range(0, n):
-            graph[i] = list()
-
-    print("--------------------------")
-
-print("Found connected component which contains " + str((size_of_largest_component / n) * 100) +
-      "% of all nodes using a radius of " + str(r))
+print("This component contains " + str((size_of_largest_component / n) * 100) +
+      "% of all nodes")
 
 
 # write graph to file to use it in the SIR simulation later on
-graph_file_name = "graph_" + ("r" + str(r).replace('.', '_')) + ("_a" + str(a).replace(".", "_")) + \
-                  ("_lr" + str(include_long_range)) + ("_t" + str(threshold).replace(".", "_"))
+graph_file_name = "graph_" + ("lr" + str(include_long_range)) + ("_r" + str(r).replace('.', '_')) +  ("_a" + str(a).replace(".", "_"))
 write_graph_to_file(graph, graph_file_name)
+print("Writing output into " + graph_file_name)
