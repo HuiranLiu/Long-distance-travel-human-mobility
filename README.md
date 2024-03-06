@@ -4,17 +4,26 @@ The Nature of Long-Distance Travel and Implications for Disease Spread
 
 ## Description
 
-These are scripts for the simulation and experiments in the [project](#project-title).
+These are five scripts for the simulation and experiments in the [project](#project-title).
 
 The executing scripts are listed belows:
 
-- **Levy-Mobility.ipynb**
-  - This script is mainly for coping with data sets of trips in the German MiD and the American NHTS. The function of this script can be separted in 4 main parts:
-  1. **Datasets Reading**: Used to reading four datasets, analyse the datasets simply, like extract and preprocess datasets from original data files, plotting the complementary cumulative distribution function (CCDF) of data sets itself, etc. <br> Four datasets used here are from Mobility in Germany survey (MiD) and the American National Household Travel survey (NHTS). More details about the [datasets](#datasets) can be found below.
-  2. **Modelling**: Simulate the model by generating a large number of sampling trip lengths using different combinations of parameters. By comparing the distance (error) between the empirical data and the sampled trip lengths in the two data sets, an optimal set of model parameters can be found for our project.
-  3. **Comparison with power-law properties**: Show the distance distributions of trips from Germany (MiD) and the U.S. (NHTS) for different transport mode. Comparing these distributions with a power-law model $F (x) = b(\frac{1}{x} )^{α−1}$.
-  4. **Comparison with truncated power-law properties**: Calculate the properties of the truncated power-law and generate truncated power law lines for different configurations to find the best fit. Then compare it to long-distance travel in MiD and NHTS,i.e., the original distance distribution and modeling results from our work.
-  5. **Finding possible distributions in MiD 2017 that fit the long distance of the data**: In this script, you can also find an attempt to find fitting commonly used distributions to German long distance data.
+- **Levy-Mobility-Modelling in long-distance trips.ipynb**
+  
+  This script is primarily used for long distance travel modeling in the dataset. The functionality can be divided into 3 main sections:
+  1. **Datasets Reading**: Reading, extracting and preprocessing datasets from empirical(original) data files. <br> The datasets used here are from Mobility in Germany survey (MiD) and the American National Household Travel survey (NHTS). More details about the [datasets](#datasets) can be found below.
+  2. **Modelling the amplified power-law to long distance data**: Simulate the model by generating a large number of sampling trip lengths using different combinations of parameters. By comparing the distance (error) between the empirical data and the sampled trip lengths in the two data sets, an optimal set of model parameters can be found, then the optimal results will be stored as "Best results of LR Modelling in MiD17.pkl" or "Best results of LR Modelling in NHTS17.pkl" in the folder **results_mobility**.
+  3. **Finding and save the best parameters for truncated power-law fitting**: Calculate the properties of the truncated power-law, find the optimal combination of parameters for truncated power law fitting. Then save the optimal results as "Optimal truncated power-law in MiD.pkl" or "Optimal truncated power-law in NHTS.pkl" in the folder **results_mobility**.
+  4. **Comparing the optimal model and truncated power-law in long-distance public transport trips**:
+  Show the comparsion by plotting CCDF of the optimal model, the optimal truncated power-law, a hand-picked truncated power-law and the empirical data for
+  the long-distance travel in MiD and NHTS respectively.
+  
+- **Levy-Mobility-Power-law in short and medium-distance trips.ipynb**
+   - Caculate the power-law properties, plot the CCDF of it, show the power-law properties of different short and medium-distance transportation modes (i.e., MiD Walking, MiD Driving, NHTS Driving, NHTS Short Distance Public Transportation) in comparison to the empirical data. Check if power-law existed or not in these transportation modes.
+   
+- **Levy-Mobility-Possible distributions fitting.ipynb**: 
+
+   - The script is an attempt to fit commonly used distributions (i.e.,'beta','expon','gamma','lognorm','powerlaw') to German long-distance data.
 
 - **Levy-Covid19.ipynb**
   - The script is used to read and process the 7-day incidence numbers of COVID in Germany from the Robert Koch Institute (RKI).
@@ -34,23 +43,19 @@ The executing scripts are listed belows:
 
 ### Datasets
 
-1. MiD 2008: MiD2008_PUF_Wege.sav 
-   * Mobility in Germany survey (MiD) data which was conducted in the year 2008
-2. MiD 2017: MiD2017_Wege.csv 
+1. MiD 2017: MiD2017_Wege.csv 
    * Mobility in Germany survey (MiD) data which was conducted in the year 2017
-3. Nhts 2009: DAYV2PUB_2009NHTS.csv
-   * the American National Household Travel survey (NHTS)data, it collects on travel behavior in the United States
-4. Nhts 2017: trippub_2017NHTS.csv
+2. Nhts 2017: trippub_2017NHTS.csv
    * the American National Household Travel survey (NHTS)data, it collects on travel behavior in the United States
 * Note: the above four datasets are used in the script Levy-Mobility.ipynb, since it's a bit too large,  you can get the NHTS data from  https://nhts.ornl.gov/downloads directly. Regarding MiD data, you need ask from https://daten.clearingstelle-verkehr.de/order-form.html#223.
   
-5. 7-days incidences1.csv and 7-days incidences2.csv
+3. 7-days incidences1.csv and 7-days incidences2.csv
    * These two docs are the 7-day incidence for Covid in Germany from 18.11.2020 to 31.10.2022. These were used in the script Levy-Covid19.ipynb.
   
-6. Data_flu.xlsx
+4. Data_flu.xlsx
    *  This doc was required from RKI https://survstat.rki.de/Content/Query/Create.aspx. It is the incidence value of Influenza(saisonal) from xxx to xxx, split by Saisonwoche.
 
-7. geo_germany.pkl
+5. geo_germany.pkl
     * The file contains the information for seting up the German maps.
 
 * Note: the above datasets 5,7 and 6,7 are used in the script Levy-Mobility.ipynb and Levy-Flu.ipynb separately, you can find them in the folder 'data'.
