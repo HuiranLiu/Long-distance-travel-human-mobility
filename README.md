@@ -58,7 +58,7 @@ The executing scripts are listed belows:
 5. geo_germany.pkl
     * The file contains the information for seting up the German maps.
 
-* Note: the above datasets of point 3 and 5 are used in covid19 an flu heatmaps. For convenience, this data is provided in the 'data' folder.
+* Note: the above datasets of point 3 and 5 are used in to generate the covid19 an flu heatmaps. For convenience, this data is already provided in the 'data' folder.
 
 
 ### Executing program
